@@ -1,2 +1,2 @@
 # Course
-repo for udemy courses
+Repo for udemy courses
