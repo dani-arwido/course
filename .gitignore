@@ -215,3 +215,5 @@ typings/
 
 # DynamoDB Local files
 .dynamodb/
+
+.vagrant
