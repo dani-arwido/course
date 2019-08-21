@@ -10,8 +10,10 @@ spec:
         app: helloworld
     spec:
       containers:
-        - name: kubernetes-demo
-          image: daniarwido/kubernetes-demo
-          ports:
-            - name: nodejs-port
-              containerPort: 3000
+      - name: kubernetes-demo
+        image: daniarwido/kubernetes-demo
+        ports:
+        - name: nodejs-port
+          containerPort: 3000
+      nodeSelector:
+        hardware: high-spec
