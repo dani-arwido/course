@@ -19,9 +19,36 @@ spec:
   selector:
     app: queue
   ports:
+    # Console
     - name: http
       port: 8161
       nodePort: 30010
+    
+    # Local
     - name: endpoint
       port: 61616
   type: NodePort
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fleetman-postion-tracker
+spec:
+  selector:
+    app: position-tracker
+  ports:
+    - name: http
+      port: 8080
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fleetman-api-gateway
+spec:
+  selector:
+    app: api-gateway
+  ports:
+    - name: http
+      port: 8080
+  type: ClusterIP
