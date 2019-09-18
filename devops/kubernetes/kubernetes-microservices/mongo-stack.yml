@@ -20,11 +20,11 @@ spec:
               mountPath: /data/db
       volumes:
         - name: mongo-persistent-storage
-          # hostPath:
-          #   path: /mnt/some/idrectory/storage
-          #   type: DirectoryOrCreate
-          presistentVolumeClaim:
-            claimName: mongo-pvc
+          hostPath:
+            path: /mnt/some/directory/structure
+            type: DirectoryOrCreate
+          # presistentVolumeClaim:
+          #   claimName: mongo-pvc
 ---
 apiVersion: apps/v1
 kind: Service
@@ -32,8 +32,8 @@ metadata:
   name: fleetman-mongodb
 spec:
   selector:
-      app: mongodb
+    app: mongodb
   ports:
     - name: mongoport
       port: 27017
-    type: ClusterIP
+  type: ClusterIP
