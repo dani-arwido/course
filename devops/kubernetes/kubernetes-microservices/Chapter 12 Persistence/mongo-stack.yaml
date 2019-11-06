@@ -7,27 +7,25 @@ spec:
     matchLabels:
       app: mongodb
   replicas: 1
-  template:
+  template: # template for the pods
     metadata:
       labels:
         app: mongodb
     spec:
       containers:
-        - name: mongodb
-          image: mongo:3.6.5-jessie
-          volumeMounts:
-            - name: mongo-persistent-storage
-              mountPath: /data/db
+      - name: mongodb
+        image: mongo:3.6.5-jessie
+        volumeMounts:
+          - name: mongo-persistent-storage
+            mountPath: /data/db
       volumes:
         - name: mongo-persistent-storage
-          hostPath:
-            path: /mnt/some/directory/structure
-            type: DirectoryOrCreate
-      # presistentVolumeClaim:
-      #   claimName: mongo-pvc
+          # pointer to the configuration of HOW we want the mount to be implemented
+          persistentVolumeClaim:
+            claimName: mongo-pvc
 ---
-apiVersion: v1
 kind: Service
+apiVersion: v1
 metadata:
   name: fleetman-mongodb
 spec:
